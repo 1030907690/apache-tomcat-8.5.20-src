@@ -251,6 +251,15 @@
                     <exclude>generatorConfig.xml</exclude>
                 </excludes>
             </resource>
+
+            <!-- 因为src/main/java里的xml和properties没编译到classes 所以这样配置 -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
         </resources>
         <!-- 默认goal -->
         <defaultGoal>package</defaultGoal>
