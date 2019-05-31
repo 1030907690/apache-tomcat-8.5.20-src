@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:aop="http://www.springframework.org/schema/aop"
+      xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+
+	 
+	 >
+  
+  	<!-- aop部分 start -->
+  	
+  	<!-- 支持注解aop -->
+  	<context:component-scan base-package="com.zzq.core.test"/>
+  	<aop:aspectj-autoproxy  />
+  	
+    <bean id="testAopServiceImpl" class="com.zzq.core.test.service.impl.TestAopServiceImpl" />
+    <bean id="timeHandler" class="com.zzq.core.test.service.handler.TimeHandler" />
+    
+    <aop:config proxy-target-class="true" >
+        <aop:aspect id="time" ref="timeHandler">
+            <aop:pointcut id="addAllMethod" expression="execution(* com.zzq.core.test.service.impl..*.*(..))"  />
+            <aop:before method="printTime" pointcut-ref="addAllMethod" />
+            <aop:after method="printTime" pointcut-ref="addAllMethod" />
+        </aop:aspect>
+    </aop:config>
+     <!-- aop部分 end -->
+    	
+  <!-- spring ioc部分 start -->
+    <bean id ="myTestBean" class= "com.zzq.core.test.entity.MyTestBean" >
+     	<!-- <property name="name" value="zhangSan"> </property> -->
+    </bean>
+    
+    
+    <bean id ="mapperScannerConfigurer" class= "com.zzq.core.test.scan.MapperScannerConfigurer" ></bean>
+  
+     <bean id ="parserEntityTableColumnContainerServiceImpl" class="com.zzq.core.test.container.ParserEntityTableColumnContainerServiceImpl" ></bean>
+     <bean id ="springApplicationContextAwareUtil" class= "com.zzq.core.test.util.SpringApplicationContextAwareUtil" ></bean>
+     <bean id ="testAopServiceUpdateImpl" class= "com.zzq.core.test.aop.operatorservice.impl.TestAopServiceUpdateImpl" ></bean>
+     
+      <bean id ="customBeanPostProcessor" class= "com.zzq.core.test.processor.CustomBeanPostProcessor" ></bean>
+      <bean id ="customBeanFactoryPostProcessor" class= "com.zzq.core.test.processor.CustomBeanFactoryPostProcessor" ></bean>
+
+	<!-- spring ioc部分 end -->
+</beans>
+ <!-- xmlns:context="http://www.springframework.org/schema/context" -->
+       <!-- xmlns:task="http://www.springframework.org/schema/task" -->
+       
+       
+       
+ <!--
+
+ spring ioc基础 头的配置
+ xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd "
+      
+      
+  spring aop配置         
+      
+
+ -->
+ 
+ <!-- 注解aop
+ 
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+ xmlns:context="http://www.springframework.org/schema/context"
+ 
+  -->
+       

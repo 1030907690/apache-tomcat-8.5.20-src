@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- xml备份2018年7月25日11:28:00 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:aop="http://www.springframework.org/schema/aop"
+      xmlns:tx="http://www.springframework.org/schema/tx"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+
+	 
+	 >
+  
+  	<!-- aop部分 start -->
+    <bean id="testAopServiceImpl" class="com.zzq.core.test.service.impl.TestAopServiceImpl" />
+    <bean id="timeHandler" class="com.zzq.core.test.service.handler.TimeHandler" />
+    
+    <aop:config proxy-target-class="true" >
+        <aop:aspect id="time" ref="timeHandler">
+            <aop:pointcut id="addAllMethod" expression="execution(* com.zzq.core.test.service.impl..*.*(..))"  />
+            <aop:before method="printTime" pointcut-ref="addAllMethod" />
+            <aop:after method="printTime" pointcut-ref="addAllMethod" />
+        </aop:aspect>
+    </aop:config>
+     <!-- aop部分 end -->
+    	
+  <!-- spring ioc部分 start -->
+    <bean id ="myTestBean" class= "com.zzq.core.test.entity.MyTestBean" >
+     	<!-- <property name="name" value="zhangSan"> </property> -->
+    </bean>
+    
+      <bean id ="customBeanPostProcessor" class= "com.zzq.core.test.processor.CustomBeanPostProcessor" ></bean>
+      <bean id ="customBeanFactoryPostProcessor" class= "com.zzq.core.test.processor.CustomBeanFactoryPostProcessor" ></bean>
+
+	<!-- spring ioc部分 end -->
+</beans>
+ <!-- xmlns:context="http://www.springframework.org/schema/context" -->
+       <!-- xmlns:task="http://www.springframework.org/schema/task" -->
+       
+       
+       
+ <!--
+
+ spring ioc基础 头的配置
+ xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd "
+      
+      
+  spring aop配置         
+      
+
+ -->
+       

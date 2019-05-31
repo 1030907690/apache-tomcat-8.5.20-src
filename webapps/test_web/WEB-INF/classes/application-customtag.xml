@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 自定义标签的测试 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:myName="http://www.lexueba.com/schema/user"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.lexueba.com/schema/user http://www.lexueba.com/schema/user.xsd">
+        
+ 	<myName:user id = "customTagUser" userName = "ZhangSan" email = "100000@qq.com"/>
+</beans>
+  
+ 
+ 
+ 

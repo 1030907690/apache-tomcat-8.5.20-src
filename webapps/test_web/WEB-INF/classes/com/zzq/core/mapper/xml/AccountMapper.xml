@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zzq.core.mapper.AccountMapper">
+    <resultMap id="BaseResultMap" type="com.zzq.core.entity.Account">
+        <id column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="money" property="money" jdbcType="BIGINT"/>
+        <result column="total_ticket" property="totalTicket" jdbcType="BIGINT"/>
+        <result column="ticket" property="ticket" jdbcType="BIGINT"/>
+        <result column="total_card" property="totalCard" jdbcType="INTEGER"/>
+        <result column="card" property="card" jdbcType="INTEGER"/>
+        <result column="valid_money" property="validMoney" jdbcType="BIGINT"/>
+        <result column="total_balance" property="totalBalance" jdbcType="BIGINT"/>
+        <result column="recharge_num" property="rechargeNum" jdbcType="INTEGER"/>
+        <result column="paid_money" property="paidMoney" jdbcType="BIGINT"/>
+        <result column="income_money" property="incomeMoney" jdbcType="BIGINT"/>
+        <result column="break_even_money" property="breakEvenMoney" jdbcType="BIGINT"/>
+        <result column="play_sum" property="playSum" jdbcType="INTEGER"/>
+        <result column="win_round" property="winRound" jdbcType="INTEGER"/>
+        <result column="avg_round" property="avgRound" jdbcType="INTEGER"/>
+        <result column="lost_round" property="lostRound" jdbcType="INTEGER"/>
+        <result column="money_round" property="moneyRound" jdbcType="INTEGER"/>
+        <result column="by_user_money" property="byUserMoney" jdbcType="BIGINT"/>
+        <result column="give_user_money" property="giveUserMoney" jdbcType="BIGINT"/>
+        <result column="give_red_packet_money" property="giveRedPacketMoney" jdbcType="BIGINT"/>
+        <result column="collect_red_packet_money" property="collectRedPacketMoney" jdbcType="BIGINT"/>
+        <result column="per_day_money" property="perDayMoney" jdbcType="BIGINT"/>
+        <result column="noon_money" property="noonMoney" jdbcType="BIGINT"/>
+        <result column="night_money" property="nightMoney" jdbcType="BIGINT"/>
+        <result column="bind_phone_money" property="bindPhoneMoney" jdbcType="BIGINT"/>
+        <result column="subscribe_reward_money" property="subscribeRewardMoney" jdbcType="BIGINT"/>
+        <result column="up_receive" property="upReceive" jdbcType="BIGINT"/>
+        <result column="receive" property="receive" jdbcType="BIGINT"/>
+        <result column="me_receive" property="meReceive" jdbcType="BIGINT"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="safe_money" property="safeMoney" jdbcType="BIGINT"/>
+        <result column="safe_passwd" property="safePasswd" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        user_id, money, total_ticket, ticket, total_card, card, valid_money, total_balance,
+        recharge_num, paid_money, income_money, break_even_money, play_sum, win_round, avg_round,
+        lost_round, money_round, by_user_money, give_user_money, give_red_packet_money, collect_red_packet_money,
+        per_day_money, noon_money, night_money, bind_phone_money, subscribe_reward_money,
+        up_receive, receive, me_receive, update_time, create_time, safe_money, safe_passwd
+    </sql>
+
+  
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select 'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from dwc_account
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+ 
+
+</mapper>

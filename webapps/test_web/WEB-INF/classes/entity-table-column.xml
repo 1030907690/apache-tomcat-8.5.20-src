@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 对象 表  字段对应的中文意思 -->
+<tables>
+	<table  id="com.zzq.core.test.entity.MyTestBean" description="我的测试表2" >
+		<column id="name" description="名称字段"></column>
+		<column id="id" description="这是id"></column>
+	</table>
+	<table  id="com.zzq.core.test.entity.MyTestBean.MyTestBean2" description="我的测试表2" >
+		<column id="name" description="名称字段"></column>
+		<column id="id" description="这是id"></column>
+	</table>
+</tables>
