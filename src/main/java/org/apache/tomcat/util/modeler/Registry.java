@@ -41,6 +41,7 @@ import javax.management.ObjectName;
 
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
+import org.apache.tomcat.util.descriptor.web.ContextResource;
 import org.apache.tomcat.util.modeler.modules.ModelerSource;
 
 /*
@@ -331,6 +332,9 @@ public class Registry implements RegistryMBean, MBeanRegistration  {
     public void addManagedBean(ManagedBean bean) {
         // XXX Use group + name
         descriptors.put(bean.getName(), bean);
+        if(null != bean.getType() && bean.getType().indexOf("ContextResource") != -1){
+            System.out.println(" bean.getType()  " + ContextResource.class.getSimpleName());
+        }
         if( bean.getType() != null ) {
             descriptorsByClass.put( bean.getType(), bean );
         }
@@ -656,6 +660,9 @@ public class Registry implements RegistryMBean, MBeanRegistration  {
             return;
         }
 
+        /*
+        * 2019年5月31日11:08:24 idea 这里xml和properties没编译到源码导致 Registry的descriptorsByClass没有数据，获取ContextResource失败
+        * */
         String descriptors = res + "/mbeans-descriptors.xml";
         URL dURL = classLoader.getResource( descriptors );
 
@@ -668,6 +675,7 @@ public class Registry implements RegistryMBean, MBeanRegistration  {
         try {
             load("MbeansDescriptorsDigesterSource", dURL, null);
         } catch(Exception ex ) {
+            ex.printStackTrace();
             log.error("Error loading " + dURL);
         }
     }

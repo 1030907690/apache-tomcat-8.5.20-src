@@ -13,3 +13,5 @@ src/java/lib/ivy-*
 /data
 /target
 /work
+/logs
+/conf
